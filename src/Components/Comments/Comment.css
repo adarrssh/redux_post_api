@@ -1,0 +1,69 @@
+.margin{
+    position: absolute;
+    left: 0;
+    top: 20px;
+    
+}
+
+.card{
+    height: 500px;
+}
+.card-body{
+    /* height: 100px; */
+    position: relative;
+}
+
+.icon{
+    color: rgb(64, 64, 67);
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.icon:hover{
+    color: red;
+}
+
+.edit-icon{
+    color: rgb(64, 64, 67);
+    position: absolute;
+    top: 10px;
+    right: 40px;
+}
+
+.edit-icon:hover{
+    color: blue;
+}
+
+.c-del{
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.c-edit{
+    position: absolute;
+    top: 0;
+    right: 60px;
+}
+
+.c-edit:hover{
+    color: blue;
+}
+
+.c-del:hover{
+    color: red;
+}
+
+.card-text{
+    position:relative;
+}
+
+ol{
+    list-style:circle;
+    margin-top: -10px;
+}
+
+.m-top{
+    margin-top: 30px;
+}
