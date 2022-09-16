@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const Comments = ({ showInput, setShowInput, comm, post }) => {
+const Comments = ({comm, post }) => {
     const dispatch = useDispatch();
 
     const [comment, setComment] = useState("")
@@ -15,6 +15,9 @@ const Comments = ({ showInput, setShowInput, comm, post }) => {
     const [updateComment, setUpdateComment] = useState("")
 
     const [showEditBox, setShowEditBox] = useState(false)
+
+    const [showInput, setShowInput] = useState(false)
+
 
     const onChange = (e) => {
         setComment(e.target.value)

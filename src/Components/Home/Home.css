@@ -1,5 +1,5 @@
 .post{
-    background-color: rgb(211, 220, 220);
+    /* background-color: rgb(211, 220, 220); */
     border: 1px solid rgb(69, 68, 68);
     height: 600px;
     border-radius: 8px;
@@ -12,10 +12,11 @@
   padding: 10px;
   border: 1px solid rgb(68, 67, 67);
 }
+
 .card{
     margin-top: 10px;
     height: 500px;
-    width: 500px;
+    width: 99%;
     border: 1px solid black;
     overflow-y: auto;
 }

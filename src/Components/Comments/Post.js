@@ -1,18 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
-import SingleComments from "../Comments/SingleComments"
-import { addSingleComment, deletePost, updateSingleComment } from '../../features/postSlice';
+import SingleComments from "./SingleComments"
+import { addSingleComment, deletePost } from '../../features/postSlice';
 import { useDispatch } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import "./Comment.css"
 import { nanoid } from '@reduxjs/toolkit';
 
-const Comments_body = ({ post, editPost }) => {
+const Post = ({ post, editPost }) => {
 
     const dispatch = useDispatch()
 
-    const [showInput, setShowInput] = useState(false)
 
     const [addComment, setAddComment] = useState({ comments: "" });
 
@@ -29,7 +28,7 @@ const Comments_body = ({ post, editPost }) => {
 
 
     return (
-        <div key={post.id} className='col-lg-6'>
+        <div key={post.id} className='col-lg-12'>
             <div className="card" >
                 <div className="card-body">
                     <h3 className="card-title">
@@ -66,7 +65,7 @@ const Comments_body = ({ post, editPost }) => {
 
                         return (
 
-                            <SingleComments post={post} key={key} comm={comm} showInput={showInput} setShowInput={setShowInput} />
+                            <SingleComments post={post} key={key} comm={comm}  />
 
                         )
                     })}
@@ -79,4 +78,4 @@ const Comments_body = ({ post, editPost }) => {
     )
 }
 
-export default Comments_body
+export default Post

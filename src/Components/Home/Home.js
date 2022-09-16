@@ -6,7 +6,7 @@ import "./Home.css"
 import { useSelector, useDispatch } from 'react-redux'
 import { postAdded, updatePost } from '../../features/postSlice'
 import { nanoid } from '@reduxjs/toolkit'
-import Comments_body from '../Comments/Comments_body'
+import Post from '../Comments/Post'
 
 const Home = () => {
     // console.log(nanoid.id);
@@ -110,7 +110,7 @@ const Home = () => {
                     // console.log(post);
                     return (
                         <>
-                            < Comments_body editPost={editPost} post={post} key={key} />
+                            < Post editPost={editPost} post={post} key={key} />
                         </>
                     )
                 })}
