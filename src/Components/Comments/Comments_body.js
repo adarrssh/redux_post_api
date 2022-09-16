@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import SingleComments from "../Comments/SingleComments"
-import { addSingleComment, deletePost } from '../../features/postSlice';
+import { addSingleComment, deletePost, updateSingleComment } from '../../features/postSlice';
 import { useDispatch } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -15,16 +15,16 @@ const Comments_body = ({ post, editPost }) => {
     const [showInput, setShowInput] = useState(false)
 
     const [addComment, setAddComment] = useState({ comments: "" });
-    // console.log(addComment);
+
+ 
 
     const onChangeComm = (e) => {
         setAddComment({ ...addComment, [e.target.name]: e.target.value })
     }
 
-    const addComm=(id,addComment)=>{
-        console.log(id,addComment);
+    const addComm = (id, addComment) => {
         dispatch(addSingleComment({ id: post.id, comm_id: nanoid(), data: addComment }))
-        setAddComment({comments:""})
+        setAddComment({ comments: "" })
     }
 
 
@@ -33,11 +33,11 @@ const Comments_body = ({ post, editPost }) => {
             <div className="card" >
                 <div className="card-body">
                     <h3 className="card-title">
-                    <i>
-                        {post.title}
-                    </i>
+                        <i>
+                            {post.title}
+                        </i>
                     </h3>
-                    
+
                     <p className="card-text"><i>{post.description}</i></p>
                     <div className='icon' onClick={() => { dispatch(deletePost({ id: post.id })) }}>
                         <DeleteIcon />
@@ -52,8 +52,11 @@ const Comments_body = ({ post, editPost }) => {
                         <label htmlFor="exampleInputEmail1" className="form-label my-3"><b>Post a comment</b></label>
                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             name='comments' placeholder='type your comment' onChange={onChangeComm} value={addComment.comments} />
-                        <button onClick={() => { addComm(post.id,addComment) }} className='btn btn-primary my-3'>Submit</button>
+                        <button onClick={() => { addComm(post.id, addComment) }} className='btn btn-primary my-3'>Submit</button>
+
                     </div>
+
+
                     <h6 className='my-3'><b>Comments</b></h6>
                     <div className="grey-line my-3">
 
@@ -70,6 +73,8 @@ const Comments_body = ({ post, editPost }) => {
 
                 </div>
             </div>
+
+            
         </div>
     )
 }

@@ -1,7 +1,7 @@
 .post{
     background-color: rgb(211, 220, 220);
     border: 1px solid rgb(69, 68, 68);
-    height: 100vh;
+    height: 600px;
     border-radius: 8px;
     margin-top: 5px;
     overflow-y: auto;

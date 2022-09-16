@@ -1,42 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    postArray: [
-
-        {
-            "id": "0",
-            "title": "This is title",
-            "description": "This is description",
-            "comments": [
-                {
-                    "id":"2312",
-                    "name": "comment1",
-                    "reply": ["one", "two"]
-
-                },
-                {
-                    "id":"fdasfasdfs",
-                    "name": "comment2",
-                    "reply": ["one", "two"]
-
-                }
-            ]
-
-        },
-        {
-            "id": "1",
-            "title": "This is title 2",
-            "description": "This is description",
-            "comments": [
-
-            ]
-
-
-        }
-
-    ]
-
+    postArray: []
 }
+
+// single post structure
+// {
+//     "id": "postId",
+//     "title": "Post title",
+//     "description": "Post description",
+//     "comments": [
+//         {
+//             "id":"comment id ",
+//             "name": "comment name",
+//             "reply": ["reply to comment", "reply to comment"]
+
+//         },
+//         {
+//             "id":"comment id ",
+//             "name": "comment name",
+//             "reply": ["reply", "reply"]
+
+//         }
+//     ]
+
+// },
+
+
+
 
 const postSlice = createSlice({
     name: 'posts',
@@ -50,74 +41,62 @@ const postSlice = createSlice({
         },
         deletePost: {
             reducer(state, action) {
-                const id = action.payload.id
                 let post = state.postArray
-                let el = post.filter((item)=>item.id!==id)
-                state.postArray=el
+                let el = post.filter((item) => item.id !== action.payload.id)
+                state.postArray = el
             }
         },
         updatePost: {
             reducer(state, action) {
-                console.log(action.payload);
-                let id = action.payload.id
-                let post = state.postArray.findIndex((item)=>item.id===id)
-                console.log(post);
-
-                state.postArray[id].title=action.payload.title
-                state.postArray[id].description=action.payload.description
+                let post = state.postArray.findIndex((item) => item.id === action.payload.id)
+                state.postArray[post].title = action.payload.title
+                state.postArray[post].description = action.payload.description
 
             }
         },
         // comments reducers
         addSingleComment: {
             reducer(state, action) {
-                // console.log(action.payload);
-                const id = action.payload.id;
-                const comm_id= action.payload.comm_id
+                const findId = state.postArray.findIndex((item) => item.id === action.payload.id)
+                const comm_id = action.payload.comm_id
                 const data = action.payload.data.comments;
-                console.log(id,comm_id,data);
                 const obj = {
-                    "id":comm_id,
+                    "id": comm_id,
                     "name": data,
                     "reply": []
                 }
 
-                state.postArray[id].comments.push(obj)
+                state.postArray[findId].comments.push(obj)
+            }
+        },
+        updateSingleComment: {
+            reducer(state, action) {
+                const PostId = state.postArray.findIndex((item) => item.id === action.payload.id);
+                let CommentIndex = state.postArray[PostId].comments.findIndex((el) => el.id === action.payload.comm_id)
+                state.postArray[PostId].comments[CommentIndex].name = action.payload.comment_name;
             }
         },
         deleteComment: {
             reducer(state, action) {
-                console.log(action.payload);
-                const id = action.payload.id
+                const findIndex = state.postArray.findIndex((item) => item.id === action.payload.id)
                 const comm_id = action.payload.comm_id
-                const post = state.postArray[id].comments.filter((el) => el.id !== comm_id)
-                state.postArray[id].comments = post
+                const post = state.postArray[findIndex].comments.filter((el) => el.id !== comm_id)
+                state.postArray[findIndex].comments = post
 
             }
         },
         addChildComment: {
             reducer(state, action) {
-                const id = action.payload.id;
-                const comment_id = action.payload.comm_id
-                const data = action.payload.data
-                console.log(action.payload);
-                let findId = state.postArray[id].comments.findIndex((el)=>el.id === comment_id)
-                console.log(findId);
-                let post = state.postArray[id].comments[findId].reply.concat(data)
-                console.log(post);
-
-                state.postArray[id].comments[findId].reply=post
-
-                // let replyArray = initialState.postArray[id].comments.filter((obj)=>obj.name===parentComment)[0]
-                // console.log(replyArray);
-                // let newData = replyArray[0].reply.map((item)=> item)
-                // newData.push(subComment)
+                const PostId = state.postArray.findIndex((item) => item.id === action.payload.id);
+                let CommentIndex = state.postArray[PostId].comments.findIndex((el) => el.id === action.payload.comm_id)
+                let post = state.postArray[PostId].comments[CommentIndex].reply.concat(action.payload.data);
+                state.postArray[PostId].comments[CommentIndex].reply = post
             }
         }
     }
 })
 
-export const { postAdded, deletePost, updatePost, deleteComment, deleteSubComment, addSingleComment, addChildComment } = postSlice.actions
+export const { postAdded, deletePost, updatePost, deleteComment, addSingleComment, addChildComment, updateSingleComment } = postSlice.actions
 
 export default postSlice.reducer
 
