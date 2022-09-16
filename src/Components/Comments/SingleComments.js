@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const Comments = ({comm, post }) => {
+const Comments = ({ comm, post }) => {
     const dispatch = useDispatch();
 
     const [comment, setComment] = useState("")
@@ -42,23 +42,13 @@ const Comments = ({comm, post }) => {
 
                         }
 
-                        
-                        ))
-                        setShowEditBox(!showEditBox)
-                        setUpdateComment("")
+
+                    ))
+                    setShowEditBox(!showEditBox)
+                    setUpdateComment("")
                 }} >Submit</button>
             </div>
 
-
-            {/* <div className={`mb-3 ${!showInput ? "invisible" : ""}`}>
-                <label htmlFor="exampleInputEmail1" className="form-label mx-3">Your message</label>
-                <input onChange={onChange} value={comment} type="text" className="form-control mx-3 " id="exampleInputEmail1" aria-describedby="emailHelp" />
-                <button className='btn btn-primary mx-3 my-3' onClick={() => {
-                    dispatch(addChildComment({ id: post.id, comm_id: comm.id, data: comment }))
-                    setShowInput(false)
-                    setComment("")
-                }}>submit</button>
-            </div> */}
             <div className="c-del">
                 <DeleteIcon onClick={() => {
                     dispatch(deleteComment(

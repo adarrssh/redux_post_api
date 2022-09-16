@@ -9,15 +9,14 @@ import { nanoid } from '@reduxjs/toolkit'
 import Post from '../Comments/Post'
 
 const Home = () => {
-    // console.log(nanoid.id);
     const dispatch = useDispatch()
+
     const ref = useRef(null)
+
     const { postArray } = useSelector((store) => store.post)
-    // console.log(postArray);
-
-
 
     const [addPost, setAddPost] = useState({ title: "", description: "", comments: [] })
+
     const [updateNote, setUpdateNote] = useState({ id: "", title: "", description: "" });
 
     const onUpdateChange = (e) => {
@@ -30,14 +29,11 @@ const Home = () => {
 
     const editPost = (id, title, description) => {
         ref.current.click();
-        // console.log(id, title, description);
         setUpdateNote({ id: id, title: title, description: description })
     }
-    // console.log(updateNote);
 
 
 
-    // console.log(addPost);
 
     return (
         <div className='container my-3'>
@@ -72,7 +68,6 @@ const Home = () => {
                                     onChange={onChange} />
                             </div>
 
-                            {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                         </form>
 
 
@@ -86,13 +81,18 @@ const Home = () => {
                                     description: addPost.description,
                                     comments: addPost.comments
                                 }))
-                        setAddPost({ title: "", description: "", comments: [] })
-                        
-                            }
+                            setAddPost({ title: "", description: "", comments: [] })
+
+                        }
                         }
 
                             type="button" className="btn btn-primary mx-3">Save</button>
-                        <button type="button" className="btn btn-secondary" >Close</button>
+                        <button type="button" className="btn btn-secondary"
+                        onClick={()=>{
+                            setAddPost({ title: "", description: "", comments: [] })
+
+                        }}
+                        >Close</button>
                     </div>
                 </div>
                 <div className="grey-line my-3">
@@ -107,7 +107,6 @@ const Home = () => {
 
 
                 {postArray.map((post, key) => {
-                    // console.log(post);
                     return (
                         <>
                             < Post editPost={editPost} post={post} key={key} />
@@ -117,7 +116,9 @@ const Home = () => {
 
             </div>
 
-            {/* <!-- Popup Modal for Post --> */}
+
+
+            {/* <!-- Popup Modal for Editing Post --> */}
             <button ref={ref} type="button" className="btn btn-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add a Post
             </button>
@@ -152,15 +153,15 @@ const Home = () => {
                         <div className="modal-footer">
                             <button onClick={() => {
                                 dispatch(updatePost({
-                                    
+
                                     id: updateNote.id,
                                     title: updateNote.title,
                                     description: updateNote.description
                                 }))
                             }
-                            
-                        } type="button" className="btn btn-primary" data-bs-dismiss="modal">save</button>
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+
+                            } type="button" className="btn btn-primary" data-bs-dismiss="modal">save</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
                         </div>
                     </div>
                 </div>

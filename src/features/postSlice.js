@@ -96,7 +96,16 @@ const postSlice = createSlice({
     }
 })
 
-export const { postAdded, deletePost, updatePost, deleteComment, addSingleComment, addChildComment, updateSingleComment } = postSlice.actions
+export const {
+
+    postAdded,
+    deletePost,
+    updatePost,
+    deleteComment,
+    addSingleComment,
+    addChildComment,
+    updateSingleComment 
+} = postSlice.actions
 
 export default postSlice.reducer
 

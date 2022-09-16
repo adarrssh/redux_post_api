@@ -15,7 +15,7 @@ const Post = ({ post, editPost }) => {
 
     const [addComment, setAddComment] = useState({ comments: "" });
 
- 
+
 
     const onChangeComm = (e) => {
         setAddComment({ ...addComment, [e.target.name]: e.target.value })
@@ -65,7 +65,7 @@ const Post = ({ post, editPost }) => {
 
                         return (
 
-                            <SingleComments post={post} key={key} comm={comm}  />
+                            <SingleComments post={post} key={key} comm={comm} />
 
                         )
                     })}
@@ -73,7 +73,7 @@ const Post = ({ post, editPost }) => {
                 </div>
             </div>
 
-            
+
         </div>
     )
 }
